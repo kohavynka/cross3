@@ -13,23 +13,23 @@ class ResetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Визначення теми в методі build
+    
     final ThemeData theme = ThemeData(
       primaryColor: Colors.blue,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.blue, // Синій колір для кнопки "Reset Password"
+          backgroundColor: Colors.blue, 
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.zero, // Квадратні краї
+            borderRadius: BorderRadius.zero,
           ),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          backgroundColor: Colors.white, // Білий фон
-          side: const BorderSide(color: Colors.black), // Чорна обводка
+          backgroundColor: Colors.white, 
+          side: const BorderSide(color: Colors.black), 
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.zero, // Квадратні краї
+            borderRadius: BorderRadius.zero, 
           ),
         ),
       ),
@@ -51,7 +51,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   labelText: 'Enter your email',
                   border: const OutlineInputBorder(),
-                  labelStyle: theme.textTheme.labelMedium, // Стиль тексту етикетки
+                  labelStyle: theme.textTheme.labelMedium, 
                 ),
               ),
               const SizedBox(height: 16),
@@ -63,7 +63,7 @@ class ResetPasswordScreen extends StatelessWidget {
                   } else if (!_isValidEmail(email)) {
                     _showAlertDialog(context, 'Please enter a valid email address.');
                   } else {
-                    // Додайте логіку для скидання пароля тут
+                    
                     _showAlertDialog(context, 'Password reset link sent to $email');
                   }
                 },
@@ -72,7 +72,7 @@ class ResetPasswordScreen extends StatelessWidget {
               const SizedBox(height: 16),
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context); // Повернутися на екран входу
+                  Navigator.pop(context); 
                 },
                 child: const Text('Back to Sign In'),
               ),
@@ -84,7 +84,6 @@ class ResetPasswordScreen extends StatelessWidget {
   }
 
   bool _isValidEmail(String email) {
-    // Проста регулярна вираз для перевірки формату email
     RegExp emailRegExp = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
     return emailRegExp.hasMatch(email);
   }
