@@ -68,9 +68,7 @@ class SignInScreen extends StatelessWidget {
                     _showAlertDialog(context, 'Password must be at least 7 characters.');
                   } else if (!_isValidEmail(email)) {
                     _showAlertDialog(context, 'Please enter a valid email address.');
-                  } else {
-                    // Додайте тут логіку для авторизації
-                  }
+                  } 
                 },
                 child: const Text('Sign In'),
               ),
@@ -95,7 +93,7 @@ class SignInScreen extends StatelessWidget {
   }
 
   bool _isValidEmail(String email) {
-    // Проста регулярна вираз для перевірки формату email
+   
     RegExp emailRegExp = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
     return emailRegExp.hasMatch(email);
   }
