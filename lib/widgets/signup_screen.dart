@@ -11,23 +11,22 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Визначення теми в методі build
     final ThemeData theme = ThemeData(
       primaryColor: Colors.blue,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.blue, // Синій колір для кнопки "Sign Up"
+          backgroundColor: Colors.blue, 
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.zero, // Квадратні краї
+            borderRadius: BorderRadius.zero,
           ),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          backgroundColor: Colors.white, // Білий фон
-          side: const BorderSide(color: Colors.black), // Чорна обводка
+          backgroundColor: Colors.white, 
+          side: const BorderSide(color: Colors.black), 
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.zero, // Квадратні краї
+            borderRadius: BorderRadius.zero, 
           ),
         ),
       ),
@@ -49,7 +48,7 @@ class SignUpScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   labelText: 'Email',
                   border: const OutlineInputBorder(),
-                  labelStyle: theme.textTheme.labelMedium, // Стиль тексту етикетки
+                  labelStyle: theme.textTheme.labelMedium, 
                 ),
               ),
               const SizedBox(height: 16),
@@ -58,7 +57,7 @@ class SignUpScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   labelText: 'Password',
                   border: const OutlineInputBorder(),
-                  labelStyle: theme.textTheme.labelMedium, // Стиль тексту етикетки
+                  labelStyle: theme.textTheme.labelMedium, 
                 ),
                 obscureText: true,
               ),
@@ -68,7 +67,7 @@ class SignUpScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   labelText: 'Confirm Password',
                   border: const OutlineInputBorder(),
-                  labelStyle: theme.textTheme.labelMedium, // Стиль тексту етикетки
+                  labelStyle: theme.textTheme.labelMedium, 
                 ),
                 obscureText: true,
               ),
@@ -86,7 +85,6 @@ class SignUpScreen extends StatelessWidget {
                   } else if (passwordController.text != confirmPasswordController.text) {
                     _showAlertDialog(context, 'Passwords do not match.');
                   } else {
-                    // Тут ви можете додати логіку для реєстрації користувача
                     _showAlertDialog(context, 'Registration successful!');
                   }
                 },
@@ -95,7 +93,7 @@ class SignUpScreen extends StatelessWidget {
               const SizedBox(height: 16),
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context); // Повернутися на екран входу
+                  Navigator.pop(context); 
                 },
                 child: const Text('Already have an account? Sign In'),
               ),
