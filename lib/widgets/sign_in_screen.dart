@@ -1,8 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 
 class SignInScreen extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  final dio = Dio();
+
+
+  // Функція для відправки запиту на сервер
+  void _validateAndLogin() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        // Створення запиту для авторизації
+        Response response = await dio.post(
+          'https://kohavynka.requestcatcher.com/', // URL вашого сервера
+          data: {
+            'email': emailController.text,
+            'password': passwordController.text,
+          },
+        );
+        print('Response: ${response.data}');
+      } catch (e) {
+        print('Error: $e');
+      }
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +37,8 @@ class SignInScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
+      child: Form(
+        key: _formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -38,6 +65,7 @@ class SignInScreen extends StatelessWidget {
               onPressed: () {
                 String email = emailController.text;
                 String password = passwordController.text;
+                _validateAndLogin();
 
                 if (email.isEmpty || password.isEmpty) {
                   _showAlertDialog(context, 'Please fill in all fields.');
@@ -64,6 +92,7 @@ class SignInScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
       ),
     );
   }

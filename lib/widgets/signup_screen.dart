@@ -1,9 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 
 class SignUpScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  final dio = Dio();
+
+  // Функція для відправки запиту на сервер
+  void _validateAndRegister() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        // Створення запиту для реєстрації
+        Response response = await dio.post(
+          'https://kohavynka.requestcatcher.com/', // URL вашого сервера
+          data: {
+            'username': emailController.text,
+            'email': emailController.text,
+            'password': passwordController.text,
+          },
+        );
+        print('Response: ${response.data}');
+      } catch (e) {
+        print('Error: $e');
+      }
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +39,8 @@ class SignUpScreen extends StatelessWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -48,6 +75,8 @@ class SignUpScreen extends StatelessWidget {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
+                  _validateAndRegister();
+
                   if (emailController.text.isEmpty ||
                       passwordController.text.isEmpty ||
                       confirmPasswordController.text.isEmpty) {
@@ -74,6 +103,7 @@ class SignUpScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
       ),
     );
   }

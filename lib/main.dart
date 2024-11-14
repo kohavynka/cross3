@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './widgets/sign_in_screen.dart';
 import './widgets/signup_screen.dart';
 import './widgets/reset_password_screen.dart';
+import 'package:dio/dio.dart';
 
 void main() {
   runApp(MyApp());

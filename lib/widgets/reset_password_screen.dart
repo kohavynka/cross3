@@ -1,8 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 
 
 class ResetPasswordScreen extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
+
+  final dio = Dio();
+
+  // Функція для відправки запиту на сервер
+  void _validateAndResetPassword() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        // Створення запиту для відновлення паролю
+        Response response = await dio.post(
+          'https://kohavynka.requestcatcher.com/', // URL вашого сервера
+          data: {
+            'email': emailController.text,
+          },
+        );
+        print('Response: ${response.data}');
+      } catch (e) {
+        print('Error: $e');
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +35,8 @@ class ResetPasswordScreen extends StatelessWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -28,6 +52,8 @@ class ResetPasswordScreen extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   String email = emailController.text;
+                  _validateAndResetPassword();
+
                   if (email.isEmpty) {
                     _showAlertDialog(context, 'Please enter your email.');
                   } else if (!_isValidEmail(email)) {
@@ -56,6 +82,7 @@ class ResetPasswordScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
       ),
     );
   }
