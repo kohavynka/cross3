@@ -9,13 +9,13 @@ class SignInScreen extends StatelessWidget {
   final dio = Dio();
 
 
-  // Функція для відправки запиту на сервер
+  
   void _validateAndLogin() async {
     if (_formKey.currentState!.validate()) {
       try {
-        // Створення запиту для авторизації
+        
         Response response = await dio.post(
-          'https://kohavynka.requestcatcher.com/', // URL вашого сервера
+          'https://kohavynka.requestcatcher.com/',
           data: {
             'email': emailController.text,
             'password': passwordController.text,
@@ -46,7 +46,7 @@ class SignInScreen extends StatelessWidget {
               controller: emailController,
               decoration: InputDecoration(
                 labelText: 'Email',
-                labelStyle: Theme.of(context).textTheme.labelMedium,  // Стиль тексту для label
+                labelStyle: Theme.of(context).textTheme.labelMedium,  
                 border: const OutlineInputBorder(),
               ),
             ),
@@ -55,7 +55,7 @@ class SignInScreen extends StatelessWidget {
               controller: passwordController,
               decoration: InputDecoration(
                 labelText: 'Password',
-                labelStyle: Theme.of(context).textTheme.labelMedium,  // Стиль тексту для label
+                labelStyle: Theme.of(context).textTheme.labelMedium,  
                 border: const OutlineInputBorder(),
               ),
               obscureText: true,
