@@ -8,13 +8,12 @@ class ResetPasswordScreen extends StatelessWidget {
 
   final dio = Dio();
 
-  // Функція для відправки запиту на сервер
+  
   void _validateAndResetPassword() async {
     if (_formKey.currentState!.validate()) {
       try {
-        // Створення запиту для відновлення паролю
         Response response = await dio.post(
-          'https://kohavynka.requestcatcher.com/', // URL вашого сервера
+          'https://kohavynka.requestcatcher.com/', 
           data: {
             'email': emailController.text,
           },
