@@ -9,13 +9,12 @@ class SignUpScreen extends StatelessWidget {
 
   final dio = Dio();
 
-  // Функція для відправки запиту на сервер
+
   void _validateAndRegister() async {
     if (_formKey.currentState!.validate()) {
       try {
-        // Створення запиту для реєстрації
         Response response = await dio.post(
-          'https://kohavynka.requestcatcher.com/', // URL вашого сервера
+          'https://kohavynka.requestcatcher.com/', 
           data: {
             'username': emailController.text,
             'email': emailController.text,
